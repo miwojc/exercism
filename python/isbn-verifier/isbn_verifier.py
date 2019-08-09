@@ -1,4 +1,6 @@
 import re
+
+
 def is_valid(isbn: str) -> bool:
     """Returns `True` if ISBN-10 is valid, otherwise returns `False`"""
     isbn = isbn.replace("-", "")
