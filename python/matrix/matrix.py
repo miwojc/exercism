@@ -4,7 +4,7 @@ from typing import List
 class Matrix(object):
     def __init__(self, matrix_string: str) -> None:
         self.lst_int = [
-            [int(num) for num in row.split()] for row in matrix_string.split("\n")
+            [int(num) for num in row.split()] for row in matrix_string.splitlines()
         ]
 
     def row(self, index: int) -> List[int]:
