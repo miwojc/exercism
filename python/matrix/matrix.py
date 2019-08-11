@@ -13,4 +13,4 @@ class Matrix(object):
 
     def column(self, index: int) -> List[int]:
         """Returns column at given index"""
-        return [self.lst_int[n][index - 1] for n in range(len(self.lst_int))]
+        return [row[index - 1] for row in self.lst_int]
