@@ -12,15 +12,14 @@ def response(hey_bob=""):
 
     He answers 'Whatever.' to anything else.
     """
-    if hey_bob.isupper():
-        if hey_bob.endswith("?"):
-            response = "Calm down, I know what I'm doing!"
-        else:
-            response = "Whoa, chill out!"
+    hey_bob = hey_bob.strip()
+    if hey_bob.endswith("?") and hey_bob.isupper():
+        return "Calm down, I know what I'm doing!"
     elif hey_bob.endswith("?"):
-        response = "Sure."
+        return "Sure."
+    elif hey_bob.isupper():
+        return "Whoa, chill out!"
     elif hey_bob == "":
-        response = "Fine. Be that way!"
+        return "Fine. Be that way!"
     else:
-        response = "Whatever."
-    return response
+        return "Whatever."
