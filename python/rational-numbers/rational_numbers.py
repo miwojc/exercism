@@ -1,20 +1,6 @@
-def gcd(a, b):
-    """
-    Return reduced rational number with lowest terms in a 'standard form' (the denominator should always be a positive integer).
-    For example, `4/4` should reduce to `1/1`, `30/60` should reduce to `1/2`, `3, -4` should be reduced to `-3, 4`, etc.
-    """
-    _a, _b = a, b
-    while b != 0:
-        (a, b) = (b, a % b)
-    gcd = a
-    numer = _a // gcd
-    denom = _b // gcd
-    return (-numer, -denom) if denom < 0 else (numer, denom)
-
-
 class Rational:
     def __init__(self, numer, denom):
-        numer, denom = gcd(numer, denom)
+        numer, denom = self.gcd(numer, denom)
         self.numer = numer
         self.denom = denom
 
@@ -57,3 +43,16 @@ class Rational:
         where `root(p, q)` is the `q`th root of `p`.
         """
         return base ** (self.numer / self.denom)
+
+    def gcd(self, a, b):
+        """
+        Return reduced rational number with lowest terms in a 'standard form' (the denominator should always be a positive integer).
+        For example, `4/4` should reduce to `1/1`, `30/60` should reduce to `1/2`, `3, -4` should be reduced to `-3, 4`, etc.
+        """
+        _a, _b = a, b
+        while b != 0:
+            (a, b) = (b, a % b)
+        gcd = a
+        numer = _a // gcd
+        denom = _b // gcd
+        return (-numer, -denom) if denom < 0 else (numer, denom)
