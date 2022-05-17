@@ -109,4 +109,9 @@ def singleton_ingredients(dishes, intersection):
     The function should return a `set` of ingredients that only appear in a single dish.
     """
 
-    pass
+    # dish: [{tomato, basil}, {onion, carrot}]
+    # intersection:
+    # VEGAN_INTERSECTIONS = {'brown sugar', 'carrot', 'sugar', 'vegetable stock', 'fresh ginger', 'nutritional yeast',
+                      # 'lemon juice', 'garlic'}
+
+    return {ingredient for dish in dishes for ingredient in dish if ingredient not in intersection}
