@@ -1,6 +1,6 @@
 class SpaceAge:
-    seconds_earth = 31557600
-    ratios = {
+    SECONDS_EARTH = 31557600
+    RATIOS = {
         "mercury": 0.2408467,
         "venus": 0.61519726,
         "earth": 1.0,
@@ -15,28 +15,28 @@ class SpaceAge:
         self.seconds = seconds
 
     def earth_years_old(self, ratio):
-        return round(self.seconds / SpaceAge.seconds_earth / ratio, 2)
+        return round(self.seconds / SpaceAge.SECONDS_EARTH / ratio, 2)
 
     def on_mercury(self):
-        return self.earth_years_old(SpaceAge.ratios["mercury"])
+        return self.earth_years_old(SpaceAge.RATIOS["mercury"])
 
     def on_venus(self):
-        return self.earth_years_old(SpaceAge.ratios["venus"])
+        return self.earth_years_old(SpaceAge.RATIOS["venus"])
 
     def on_earth(self):
-        return self.earth_years_old(SpaceAge.ratios["earth"])
+        return self.earth_years_old(SpaceAge.RATIOS["earth"])
 
     def on_mars(self):
-        return self.earth_years_old(SpaceAge.ratios["mars"])
+        return self.earth_years_old(SpaceAge.RATIOS["mars"])
 
     def on_jupiter(self):
-        return self.earth_years_old(SpaceAge.ratios["jupiter"])
+        return self.earth_years_old(SpaceAge.RATIOS["jupiter"])
 
     def on_saturn(self):
-        return self.earth_years_old(SpaceAge.ratios["saturn"])
+        return self.earth_years_old(SpaceAge.RATIOS["saturn"])
 
     def on_uranus(self):
-        return self.earth_years_old(SpaceAge.ratios["uranus"])
+        return self.earth_years_old(SpaceAge.RATIOS["uranus"])
 
     def on_neptune(self):
-        return self.earth_years_old(SpaceAge.ratios["neptune"])
+        return self.earth_years_old(SpaceAge.RATIOS["neptune"])
