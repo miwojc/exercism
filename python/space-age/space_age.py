@@ -14,29 +14,29 @@ class SpaceAge:
     def __init__(self, seconds):
         self.seconds = seconds
 
-    def earth_years_old(self, ratio):
-        return round(self.seconds / SpaceAge.SECONDS_EARTH / ratio, 2)
+    def earth_years_old(self, planet):
+        return round(self.seconds / SpaceAge.SECONDS_EARTH / SpaceAge.RATIOS[planet], 2)
 
     def on_mercury(self):
-        return self.earth_years_old(SpaceAge.RATIOS["mercury"])
+        return self.earth_years_old("mercury")
 
     def on_venus(self):
-        return self.earth_years_old(SpaceAge.RATIOS["venus"])
+        return self.earth_years_old("venus")
 
     def on_earth(self):
-        return self.earth_years_old(SpaceAge.RATIOS["earth"])
+        return self.earth_years_old("earth")
 
     def on_mars(self):
-        return self.earth_years_old(SpaceAge.RATIOS["mars"])
+        return self.earth_years_old("mars")
 
     def on_jupiter(self):
-        return self.earth_years_old(SpaceAge.RATIOS["jupiter"])
+        return self.earth_years_old("jupiter")
 
     def on_saturn(self):
-        return self.earth_years_old(SpaceAge.RATIOS["saturn"])
+        return self.earth_years_old("saturn")
 
     def on_uranus(self):
-        return self.earth_years_old(SpaceAge.RATIOS["uranus"])
+        return self.earth_years_old("uranus")
 
     def on_neptune(self):
-        return self.earth_years_old(SpaceAge.RATIOS["neptune"])
+        return self.earth_years_old("neptune")
