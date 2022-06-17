@@ -1,11 +1,7 @@
+ACTIONS = ["wink", "double blink", "close your eyes", "jump", "reverse"]
+
+
 def commands(binary_str):
-    out = []
-    if int(binary_str[-1]):
-        out.append("wink")
-    if int(binary_str[-2]):
-        out.append("double blink")
-    if int(binary_str[-3]):
-        out.append("close your eyes")
-    if int(binary_str[-4]):
-        out.append("jump")
-    return out[::-1] if int(binary_str[-5]) else out
+    code = int(binary_str, 2)
+    out = [action for idx, action in enumerate(ACTIONS) if code & (1 << idx)]
+    return out[-2::-1] if "reverse" in out else out
