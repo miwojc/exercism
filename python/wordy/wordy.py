@@ -1,30 +1,38 @@
-def parse_numbers(question):
-    numbers = []
-    for c in question[:-1].split():
-        c = c.strip()
-        try:
-            numbers.append(int(c))
-        except ValueError:
-            pass
-    return numbers
+import re
+
+METHODS = {
+    "plus": "__add__",
+    "minus": "__sub__",
+    "multiplied by": "__mul__",
+    "divided by": "__truediv__",
+}
 
 
-def parse_operator(question):
-    return [
-        c.strip()
-        for c in question.split()
-        if c in ["plus", "minus", "multiplied", "divided"]
-    ][0]
+def parse_question(question):
+    question = question.removeprefix("What is").removesuffix("?").strip()
+    return question
 
 
 def answer(question):
-    numbers = parse_numbers(question)
-    operator = parse_operator(question)
-    if operator == "plus":
-        return sum(numbers)
-    elif operator == "minus":
-        return numbers[0] - numbers[1]
-    elif operator == "multiplied":
-        return numbers[0] * numbers[1]
-    elif operator == "divided":
-        return numbers[0] / numbers[1]
+    question = parse_question(question)
+    if not question:
+        raise ValueError("syntax error")
+    if re.search(re.compile("^-?\d$"), question):
+        return int(question)
+    foundOp = False
+    for name, op in METHODS.items():
+        if name in question:
+            question = question.replace(name, op)
+            foundOp = True
+    if not foundOp:
+        raise ValueError("unknown operation")
+    ret = question.split()
+    while len(ret) > 1:
+        try:
+            x, op, y, *tail = ret
+            if op not in METHODS.values():
+                raise ValueError("syntax error")
+            ret = [int(x).__getattribute__(op)(int(y)), *tail]
+        except:
+            raise ValueError("syntax error")
+    return ret[0]
