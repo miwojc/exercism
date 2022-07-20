@@ -1,21 +1,29 @@
+TRANS = {
+    "AUG": "Methionine",
+    "UUU": "Phenylalanine",
+    "UUC": "Phenylalanine",
+    "UUA": "Leucine",
+    "UUG": "Leucine",
+    "UCU": "Serine",
+    "UCC": "Serine",
+    "UCA": "Serine",
+    "UCG": "Serine",
+    "UAU": "Tyrosine",
+    "UAC": "Tyrosine",
+    "UGU": "Cysteine",
+    "UGC": "Cysteine",
+    "UGG": "Tryptophan",
+    "UAA": "STOP",
+    "UAG": "STOP",
+    "UGA": "STOP",
+}
+
+
 def proteins(strand):
-    out = []
+    proteins = []
     for idx in range(0, len(strand), 3):
-        condon = strand[idx : idx + 3]
-        if condon in ["UAA", "UAG", "UGA"]:
+        codon = strand[idx : idx + 3]
+        if TRANS[codon] == "STOP":
             break
-        if condon == "AUG":
-            out.append("Methionine")
-        if condon in ["UUU", "UUC"]:
-            out.append("Phenylalanine")
-        if condon in ["UUA", "UUG"]:
-            out.append("Leucine")
-        if condon in ["UCU", "UCC", "UCA", "UCG"]:
-            out.append("Serine")
-        if condon in ["UAU", "UAC"]:
-            out.append("Tyrosine")
-        if condon in ["UGU", "UGC"]:
-            out.append("Cysteine")
-        if condon in ["UGG"]:
-            out.append("Tryptophan")
-    return out
+        proteins.append(TRANS[codon])
+    return proteins
