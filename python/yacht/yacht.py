@@ -31,12 +31,12 @@ def score(dice, category):
         else:
             return 0
     if category == 9:
-        if len(c) == 5 and (bool(c[1]) ^ bool(c[6])) and c[1]:
+        if len(c) == 5 and (c[1] ^ c[6]) and c[1]:
             return 30
         else:
             return 0
     if category == 10:
-        if len(c) == 5 and (bool(c[1]) ^ bool(c[6])) and c[6]:
+        if len(c) == 5 and (c[1] ^ c[6]) and c[6]:
             return 30
         else:
             return 0
