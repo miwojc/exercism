@@ -23,18 +23,27 @@ def score(dice, category):
     if category == 7:
         if len(c) == 2 and mc[0][1] == 3:
             return mc[0][0] * mc[0][1] + mc[1][0] * mc[1][1]
+        else:
+            return 0
     if category == 8:
         if len(c) <= 2 and mc[0][1] >= 4:
             return mc[0][0] * 4
+        else:
+            return 0
     if category == 9:
         if len(c) == 5 and (c[1] ^ c[6]) and c[1]:
             return 30
+        else:
+            return 0
     if category == 10:
         if len(c) == 5 and (c[1] ^ c[6]) and c[6]:
             return 30
+        else:
+            return 0
     if category == 11:
         return sum(dice)
     if category == 0:
         if len(c) == 1:
             return 50
-    return 0
+        else:
+            return 0
