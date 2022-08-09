@@ -3,28 +3,39 @@
 # %% auto 0
 __all__ = ['Robot']
 
-# %% ../057_robot-name.ipynb 4
+# %% ../057_robot-name.ipynb 6
+import datetime
 import random
 import string
-import datetime
 
-# %% ../057_robot-name.ipynb 5
+# %% ../057_robot-name.ipynb 7
 class Robot:
     NAMES = []
-    def __init__(self):
-        random.seed(datetime.datetime.now())
-        name = random.choice(string.ascii_uppercase)+random.choice(string.ascii_uppercase)+f"{random.randint(0,999):03d}"
-        while name in Robot.NAMES:
-            name = random.choice(string.ascii_uppercase)+random.choice(string.ascii_uppercase)+f"{random.randint(0,999):03d}"
-        Robot.NAMES.append(name)
-        self.name = name
 
-    def reset(self):
-        random.seed(datetime.datetime.now())
-        name = random.choice(string.ascii_uppercase)+random.choice(string.ascii_uppercase)+f"{random.randint(0,999):03d}"
-        while name in Robot.NAMES:
-            name = random.choice(string.ascii_uppercase)+random.choice(string.ascii_uppercase)+f"{random.randint(0,999):03d}"
-        Robot.NAMES.append(name)
-        self.name = name
-    def __repr__(self):
+    def __init__(self):
+        self.name = Robot.valid_name()
+
+    reset = __init__
+
+    def __str__(self):
         return f"Robot name: {self.name}"
+    
+    __repr__ = __str__
+
+    @staticmethod
+    def gen_name():
+        random.seed(datetime.datetime.now())
+        name = (
+            random.choice(string.ascii_uppercase)
+            + random.choice(string.ascii_uppercase)
+            + f"{random.randint(0,999):03d}"
+        )
+        return name
+
+    @staticmethod
+    def valid_name():
+        name = Robot.gen_name()
+        while name in Robot.NAMES:
+            name = Robot.gen_name()
+        Robot.NAMES.append(name)
+        return name
