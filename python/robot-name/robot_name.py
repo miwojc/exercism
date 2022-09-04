@@ -3,39 +3,35 @@
 # %% auto 0
 __all__ = ['Robot']
 
+# %% ../057_robot-name.ipynb 5
+from random import choice, randint, seed
+from string import ascii_uppercase
+
 # %% ../057_robot-name.ipynb 6
-import datetime
-import random
-import string
-
-# %% ../057_robot-name.ipynb 7
 class Robot:
-    NAMES = []
+    "Generate robot with unique name"
+    names: list[str] = []
 
-    def __init__(self):
-        self.name = Robot.valid_name()
+    def __init__(self) -> None:
+        self.name: str = Robot.validate_name()
 
+    # Instructinos ask to create `reset` method, which in same as `__init__` method
     reset = __init__
 
-    def __str__(self):
-        return f"Robot name: {self.name}"
-    
-    __repr__ = __str__
-
     @staticmethod
-    def gen_name():
-        random.seed(datetime.datetime.now())
-        name = (
-            random.choice(string.ascii_uppercase)
-            + random.choice(string.ascii_uppercase)
-            + f"{random.randint(0,999):03d}"
+    def generate_name() -> str:
+        "Generate a unique robot name such as RX837 or BC811"
+        seed()
+        name: str = (
+            choice(ascii_uppercase) + choice(ascii_uppercase) + f"{randint(0,999):03d}"
         )
         return name
 
     @staticmethod
-    def valid_name():
-        name = Robot.gen_name()
-        while name in Robot.NAMES:
-            name = Robot.gen_name()
-        Robot.NAMES.append(name)
+    def validate_name() -> str:
+        "Validate and return generated robot name"
+        name: str = Robot.generate_name()
+        while name in Robot.names:
+            name = Robot.generate_name()
+        Robot.names.append(name)
         return name
