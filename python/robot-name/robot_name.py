@@ -4,8 +4,8 @@
 __all__ = ['Robot']
 
 # %% ../057_robot-name.ipynb 5
-from random import choices, randint
-from string import ascii_uppercase
+from random import choices
+from string import ascii_uppercase, digits
 
 # %% ../057_robot-name.ipynb 6
 class Robot:
@@ -26,5 +26,4 @@ class Robot:
     @staticmethod
     def generate_name() -> str:
         """Generate a unique robot name such as RX837 or BC811."""
-        name = "".join(choices(ascii_uppercase, k=2)) + f"{randint(0,999):03d}"
-        return name
+        return "".join(choices(ascii_uppercase, k=2) + choices(digits, k=3))
