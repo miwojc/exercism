@@ -4,34 +4,32 @@
 __all__ = ['Robot']
 
 # %% ../057_robot-name.ipynb 5
-from random import choice, randint
+from random import choices, randint
 from string import ascii_uppercase
 
 # %% ../057_robot-name.ipynb 6
 class Robot:
-    "Generate robot with unique name"
+    """Generate robot with unique name."""
+
     names: set[str] = set()
 
     def __init__(self) -> None:
         self.reset()
 
     def reset(self) -> None:
-        "Reset robot's name"
-        self.name: str = Robot.validate_name()
+        """Reset robot's name."""
+        self.name = Robot.validate_name()
 
     @staticmethod
     def generate_name() -> str:
-        "Generate a unique robot name such as RX837 or BC811"
-        name = (
-            choice(ascii_uppercase) + choice(ascii_uppercase) + f"{randint(0,999):03d}"
-        )
+        """Generate a unique robot name such as RX837 or BC811."""
+        name = "".join(choices(ascii_uppercase, k=2)) + f"{randint(0,999):03d}"
         return name
 
     @staticmethod
     def validate_name() -> str:
-        "Validate and return generated robot name"
-        name = Robot.generate_name()
-        while name in Robot.names:
-            name = Robot.generate_name()
+        """Validate and return generated robot's name."""
+        while (name := Robot.generate_name()) in Robot.names:
+            pass
         Robot.names.add(name)
         return name
