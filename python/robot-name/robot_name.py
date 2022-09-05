@@ -4,7 +4,7 @@
 __all__ = ['Robot']
 
 # %% ../057_robot-name.ipynb 5
-from random import choice, randint, seed
+from random import choice, randint
 from string import ascii_uppercase
 
 # %% ../057_robot-name.ipynb 6
