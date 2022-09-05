@@ -10,19 +10,19 @@ from string import ascii_uppercase
 # %% ../057_robot-name.ipynb 6
 class Robot:
     "Generate robot with unique name"
-    names: list[str] = []
+    names: set[str] = set()
 
     def __init__(self) -> None:
-        self.name: str = Robot.validate_name()
+        self.reset()
 
-    # Instructinos ask to create `reset` method, which in same as `__init__` method
-    reset = __init__
+    def reset(self) -> None:
+        "Reset robot's name"
+        self.name: str = Robot.validate_name()
 
     @staticmethod
     def generate_name() -> str:
         "Generate a unique robot name such as RX837 or BC811"
-        seed()
-        name: str = (
+        name = (
             choice(ascii_uppercase) + choice(ascii_uppercase) + f"{randint(0,999):03d}"
         )
         return name
@@ -30,8 +30,8 @@ class Robot:
     @staticmethod
     def validate_name() -> str:
         "Validate and return generated robot name"
-        name: str = Robot.generate_name()
+        name = Robot.generate_name()
         while name in Robot.names:
             name = Robot.generate_name()
-        Robot.names.append(name)
+        Robot.names.add(name)
         return name
